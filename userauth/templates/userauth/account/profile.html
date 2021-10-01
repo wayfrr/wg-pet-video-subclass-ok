@@ -1,0 +1,87 @@
+{% extends 'account/base_card.html' %}
+
+
+{% block title %}Profile{% endblock %}
+
+{% block card-header %}
+    <h3>Account profile</h3>
+{% endblock %}
+
+{% block card-body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col border">
+                <small>E-mail:</small><br>
+                {{ request.user.email }}
+            </div>
+            <div class="col border">
+                <small>Display name:</small><br>
+                {{ request.user.display_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>First name:</small><br>
+                {{ request.user.first_name|default:'' }}
+            </div>
+            <div class="col border">
+                <small>Last name:</small><br>
+                {{ request.user.last_name|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>Address1:</small><br>
+                {{ request.user.address1|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>Address2:</small><br>
+                {{ request.user.address2|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>City:</small><br>
+                {{ request.user.city|default:'' }}
+            </div>
+            <div class="col-2 border">
+                <small>Postal code:</small><br>
+                {{ request.user.zip_code|default:'' }}
+            </div>
+            <div class="col-4 border">
+                <small>Country:</small><br>
+                {{ request.user.country|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>Mobile phone:</small><br>
+                {{ request.user.mobile_phone|default:'' }}
+            </div>
+            <div class="col border">
+                <small>Date of birth:</small><br>
+                {{ request.user.date_of_birth|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>Additional information:</small><br>
+                {{ request.user.additional_information|default:'' }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col border">
+                <small>Photo:</small><br>
+                <img src="{{ request.user.photo.url }}" class="profile-image" alt="User photo" >
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block card-footer %}
+    <a href="{% url 'account_update' request.user.pk %}">Update your account</a>
+{% endblock %}

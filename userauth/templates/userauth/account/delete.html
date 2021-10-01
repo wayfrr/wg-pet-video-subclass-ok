@@ -1,0 +1,21 @@
+{% extends 'account/base_card.html' %}
+
+
+
+{% block title %}Delete account{% endblock %}
+
+{% block card-header %}
+    <h3>Delete account</h3>
+{% endblock %}
+
+{% block card-body %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the account !? {{ object.email }}?</p>
+        <button type="submit" class="btn btn-danger"> Delete </button>
+    </form>
+    <br><p>No, keep my account</p>
+    <a href="/" class="btn btn-outline-primary">Return to site</a>
+
+{% endblock %}

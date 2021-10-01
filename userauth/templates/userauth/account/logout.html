@@ -1,0 +1,22 @@
+{% extends 'account/base_card.html' %}
+
+
+{% block title %}Sign Out{% endblock %}
+
+{% block card-header %}
+    <h3>Sign Out</h3>
+{% endblock %}
+
+{% block card-body %}
+
+    <p>Are you sure you want to sign out?</p>
+    
+    <form method="POST" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-primary btn-sm">Sign Out </button>
+    </form>
+    
+    <br><p>No, stay logged in</p>
+    <a href="/" class="btn btn-outline-primary">Return to site</a>
+
+{% endblock %}

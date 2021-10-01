@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'anjalioldlipiregular';
+    src: url('anjalioldlipi-webfont.woff2') format('woff2'),
+         url('anjalioldlipi-webfont.woff') format('woff'),
+         url('../fonts/anjalioldlipi/AnjaliOldLipi-Regular.woff') format('truetype'),
+         url('../fonts/anjalioldlipi/AnjaliOldLipi-Regular.woff2') format('truetype'),
+         url('../fonts/anjalioldlipi/AnjaliOldLipi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+ 
+body {  
+  font-family: 'anjalioldlipiregular'; 
+  line-height: 1.4;
+  font-weight:normal;
+   font-style:normal;
+}
+
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* for the images and text inside streamfields */
+.block-paragraph p {
+  color: black;
+}
+
+.block-image-right {
+  float: right;
+  margin-left: 20px;
+  font: italic 12px Georgia, serif;
+}
+.block-image-left {
+  float: left;
+  margin-right: 20px;
+  font: italic 12px Georgia, serif;
+}
+.block-image-center {
+  display: grid;
+  /* justify-content works here because Wagtail creates an image of fixed dimensions */
+  justify-content: center;
+  overflow: hidden;
+  font: italic 12px Georgia, serif;
+}
+
+/* for the videos inside streamfields */
+.block-video-right {
+  float: right;
+  margin-left: 20px;
+  font: italic 12px Georgia, serif;
+}
+.block-video-left {
+  float: left;
+  margin-right: 20px;
+  font: italic 12px Georgia, serif;
+}
+.block-video-center {
+  display: grid;
+  /* margin auto works here because embed adapts to size of container */
+  margin: auto;
+  overflow: hidden;
+  font: italic 12px Georgia, serif;
+}
+.block-video-small {
+  width: 240px;
+  height: auto;
+}
+.block-video-medium {
+  width: 480px;
+  height: auto;
+  max-width: 100%;
+}
+.block-video-large {
+  width: 2400px;
+  height: auto;
+  max-width: 100%;
+}
+
+/* to make embedded objects responsive https://docs.wagtail.io/en/v2.9/topics/writing_templates.html#responsive-embeds */
+.rich-text img {
+  max-width: 100%;
+  height: auto;
+}
+.responsive-object {
+  position: relative;
+}
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* for the images with text overlay on cms pages */
+.card-img-overlay .card-title, .card-subtitle, .card-text {
+  color: white;
+}
+p.card-subtitle {
+  color: white;
+}
+.card.article, .card.theme {
+  border: none;
+}
+.article, .theme {
+  width: 320px;
+  height: 240px;
+}
+.img-front {
+  position: relative;
+  max-width: 100%;
+}
+.img-default {
+  position: relative;
+  max-width: 100%;
+  background-color: grey;
+}
+.img-background {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  left: 0;
+  background-color: navy;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+a:hover .img-background {
+  opacity: 0.6;
+}
