@@ -13,6 +13,7 @@ distlib==0.3.1
 Django==3.2.7
 django-allauth==0.45.0
 django-countries==7.2.1
+django-embed-video==1.4.0
 django-filter==2.4.0
 django-modelcluster==5.1
 django-taggit==1.5.1
@@ -49,6 +50,8 @@ urllib3==1.26.7
 virtualenv==20.4.3
 virtualenvwrapper-win==1.2.6
 wagtail==2.14.1
+wagtail-embedvideos3==0.4.3
+wagtailcodeblock==1.17.1.0
 webencodings==0.5.1
 Willow==1.4
 wrapt==1.12.1

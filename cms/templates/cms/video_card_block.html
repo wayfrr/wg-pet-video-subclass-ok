@@ -1,0 +1,10 @@
+<!--  video_card_block.html -->
+{% load wagtailcore_tags wagtailembeds_tags %}
+
+{% load cms_extras %}
+
+{% block content %}
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{ self.video.url }}?rel=0" allowfullscreen></iframe>
+    </div>
+{% endblock %}

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -35,7 +36,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'allauth.socialaccount.providers.google',
     'cms',
+    'wagtailcodeblock',
 
+    'wagtailvideos',
+    
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -221,3 +225,25 @@ SOCIALACCOUNT_PROVIDERS = {
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
 
 
+#wagtailcodeblock theme and language
+WAGTAIL_CODE_BLOCK_THEME = None
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ('bash', 'Bash/Shell'),
+    ('css', 'CSS'),
+    ('html', 'HTML'),
+    ('javascript', 'Javascript'),
+    ('json', 'JSON'),
+    ('python', 'Python'),
+    ('sql', 'SQL'),
+    ('yaml', 'YAML'),
+)
+
+#for you tube 
+WAGTAILEMBEDS_FINDERS = [
+    {
+        'class': 'cms.oembedfinder.YouTubePreserveRelFinder',
+    },
+    {
+        'class': 'wagtail.embeds.finders.oembed',
+    }
+]
