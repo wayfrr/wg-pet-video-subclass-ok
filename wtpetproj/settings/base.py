@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'wagtailvideos',
     
+    
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -94,6 +95,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -238,12 +240,3 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('yaml', 'YAML'),
 )
 
-#for you tube 
-WAGTAILEMBEDS_FINDERS = [
-    {
-        'class': 'cms.oembedfinder.YouTubePreserveRelFinder',
-    },
-    {
-        'class': 'wagtail.embeds.finders.oembed',
-    }
-]

@@ -45,19 +45,20 @@ class InlineVideoBlock(blocks.StructBlock):
    video = EmbedBlock(label=("Video"))
    caption = CharBlock(required=False, label=("Caption"))
    float = blocks.ChoiceBlock(
-       required=False,
-       choices=[('right', ("Right")), ('left', ("Left")), ('center', ("Center"))],
-       default='right',
-      label=("Float"),
+        required=False,
+        choices=[('right', ("Right")), ('left', ("Left")), ('center', ("Center"))],
+        default='right',
+        label=("Float"),
     )
    size = blocks.ChoiceBlock(
-       required=False,
-      choices=[('small', ("Small")), ('medium', ("Medium")), ('large', ("Large"))],
-      default='small',
-      label=("Size"),
+        required=False,
+        choices=[('small', ("Small")), ('medium', ("Medium")), ('large', ("Large"))],
+        default='small',
+        label=("Size"),
    )
 
    class Meta:
+       template = "streams/video_block.html"
        icon = 'media'
        label = 'YouTube Video'
 
@@ -81,7 +82,19 @@ class VideoBlock(blocks.StructBlock):
 
     class Meta:
         icon = 'media'
-        label = 'Server Video'        
+        label = 'Server Video'  
+
+
+#class MyVideoBlock(blocks.StreamBlock):
+#    '''rich text'''
+#title = blocks.CharBlock(required=True, help_text="Add your Title")
+#texts = blocks.TextBlock(required=True, help_text="Add your additional text")
+#embed = EmbedBlock()
+
+#class Meta:
+#    template = "streams/video_block.html"
+#    icon = "edit"
+#    label = "Full Rich Text"      
 
 
 

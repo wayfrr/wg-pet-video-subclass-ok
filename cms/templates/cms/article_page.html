@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% load wagtailcore_tags wagtailimages_tags static %}
 
 {% block body_class %}template-articlepage{% endblock %}
@@ -34,7 +35,7 @@
         <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-auto mb-3">
-                    {%  include "streamfield.html" %}
+                    {% include "streamfield.html" %}
                 </div>
             </div>
         </div>

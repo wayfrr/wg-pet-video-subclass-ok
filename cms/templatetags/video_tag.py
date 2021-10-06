@@ -5,6 +5,7 @@ register = template.Library()
 
 @register.filter(name="embedurl")
 def get_embed_url_with_parameters(url):
+    print('we inside this emb')
     if "youtube.com" in url or "youtu.be" in url:
         regex = r"(?:https:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)"  # Get video id from URL
         embed_url = re.sub(
