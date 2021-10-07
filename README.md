@@ -1,5 +1,5 @@
-#Existing as WTPETCL1 in local server-Success
-# upto vid #15 Wagtail custom nav menu
+#Existing as WTPETCL1 in local server-Success upto vid #15 Wagtail custom nav menu 
+
 
 Development starts from scratch and covers at least the following:
 
