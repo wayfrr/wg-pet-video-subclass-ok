@@ -55,7 +55,6 @@ class CategoryPage(Page):
     ]
 
 
-
 class ArticlePage(Page):
 
     template = "cms/article_page.html"
@@ -142,6 +141,12 @@ class VideoBlogPage(ArticlePage):
         StreamFieldPanel("body"),
     ]
 
+class TextPage(Page):
+    text = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('text', classname='full'),
+    ]
 
 
 @register_snippet
@@ -189,7 +194,21 @@ class MenuItem(Orderable):
         ImageChooserPanel('icon'),
         FieldPanel('show_when'),
     ]
+   
+    def page(self):
+        if self.link_page:
+            return self.link_page       
+        return 'None'
 
+    
+    def url(self):
+        if self.link_url:
+            return self.link_url
+        elif self.link_page:
+            return self.link_page.url
+        return 'None'
+
+    
     @property
     def slug_of_submenu(self):
         # becomes slug of submenu if there is one, otherwise None
@@ -203,21 +222,21 @@ class MenuItem(Orderable):
                 or (self.show_when == 'not_logged_in' and not authenticated))
 
 
-    
-    def page(self):
-        if self.link_page:
-            return self.link_page
-        
-        return 'None'
-
-    
-    def url(self):
-        if self.link_url:
-            return '/'+ self.link_url
-        elif self.link_page:
-            return self.link_page.url
-        return 'None'
-
-
     def __str__(self):
         return self.title
+
+
+@register_snippet
+class CompanyLogo(models.Model):
+    name = models.CharField(max_length=250)
+    logo = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+
+    panels = [
+        FieldPanel('name', classname='full'),
+        ImageChooserPanel('logo'),
+    ]
+
+    def __str__(self):
+        return self.name

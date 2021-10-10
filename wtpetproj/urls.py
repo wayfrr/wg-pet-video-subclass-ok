@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include,url
 from django.urls import path
 from django.contrib import admin
 
@@ -16,9 +16,10 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
 
     path('search/', search_views.search, name='search'),
+    
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('userauth.urls')),
-    #path('cms/', include('cms.urls')),
+    
 
 ]
 

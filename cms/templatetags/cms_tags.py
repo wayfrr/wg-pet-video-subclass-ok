@@ -1,4 +1,4 @@
-from cms.models import Menu
+from cms.models import Menu, CompanyLogo
 from django import template
 
 register = template.Library()
@@ -36,3 +36,6 @@ def get_menu(slug, page, logged_in):
         return None
 
 
+@register.simple_tag()
+def company_logo():
+    return CompanyLogo.objects.first()
