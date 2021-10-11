@@ -19,6 +19,7 @@ urlpatterns = [
     
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('userauth.urls')),
+    path('comments/', include('django_comments_xtd.urls')),
     
 
 ]

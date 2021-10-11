@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'cms',
     'wagtailcodeblock',
+    'django_comments_xtd',
+    'django_comments',
 
     'wagtailvideos',
-    
-    
+     
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -240,3 +241,21 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('yaml', 'YAML'),
 )
 
+
+
+# settings for Django Comments Xtd - see https://django-comments-xtd.readthedocs.io/en/latest/tutorial.html
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
+                     b"Aequam memento rebus in arduis servare mentem.")
+COMMENTS_XTD_FROM_EMAIL = "noreply@naire.com"
+COMMENTS_XTD_CONTACT_EMAIL = "nairnetwork1@gmail.com"
+COMMENTS_XTD_MODEL = 'cms.models.CustomComment'
+COMMENTS_XTD_MAX_THREAD_LEVEL = 1  # default is 0
+COMMENTS_XTD_LIST_ORDER = ('-thread_id', 'order')  # default is ('thread_id', 'order')
+COMMENTS_XTD_APP_MODEL_OPTIONS = {
+    'cms.articlepage': {
+        'allow_flagging': False,
+        'allow_feedback': True,
+        'show_feedback': True,
+    }
+}

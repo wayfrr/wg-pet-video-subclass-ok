@@ -14,6 +14,9 @@ from django_extensions.db.fields import AutoSlugField
 from modelcluster.models import ClusterableModel
 from wagtail.core.models import Orderable
 from django.utils.text import slugify
+from django_comments_xtd.models import XtdComment
+
+
 
 
 
@@ -81,6 +84,8 @@ class ArticlePage(Page):
     def categorypages(self):
         return CategoryPage.objects.filter(category__in=self.categories.all())
 
+    def get_absolute_url(self):
+        return self.get_url()
 
 
     content_panels = Page.content_panels + [
@@ -88,8 +93,8 @@ class ArticlePage(Page):
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         FieldPanel('featured'),
         ImageChooserPanel('image'),
-        
         StreamFieldPanel('body'),
+        InlinePanel('customcomments', label=("Comments")),
         
     ]
 
@@ -139,7 +144,11 @@ class VideoBlogPage(ArticlePage):
         FieldPanel("youtube_video_id"),
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         StreamFieldPanel("body"),
+        InlinePanel('customcomments', label=("Comments")),
     ]
+
+    def get_absolute_url(self):
+        return self.get_url()
 
 class TextPage(Page):
     text = RichTextField(blank=True)
@@ -240,3 +249,15 @@ class CompanyLogo(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class CustomComment(XtdComment):
+    page = ParentalKey(ArticlePage, on_delete=models.CASCADE, related_name='customcomments')
+
+    def save(self, *args, **kwargs):
+        if self.user:
+            self.user_name = self.user.display_name
+        self.page = ArticlePage.objects.get(pk=self.object_pk)
+        super(CustomComment, self).save(*args, **kwargs)
+
