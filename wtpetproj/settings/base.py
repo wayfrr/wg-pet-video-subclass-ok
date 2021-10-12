@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.urls import reverse_lazy
 
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +40,9 @@ INSTALLED_APPS = [
     'wagtailcodeblock',
     'django_comments_xtd',
     'django_comments',
+    'wagtail.contrib.modeladmin',
+    'wagtailstreamforms',
+     'captcha',
 
     'wagtailvideos',
      
@@ -259,3 +263,10 @@ COMMENTS_XTD_APP_MODEL_OPTIONS = {
         'show_feedback': True,
     }
 }
+
+
+# Wagtailstreamforms settings
+WAGTAILSTREAMFORMS_FORM_TEMPLATES = (
+    ('cms/custom_form.html', ("Custom Form Template")),
+)
+WAGTAILSTREAMFORMS_ADVANCED_SETTINGS_MODEL = 'cms.AdvancedFormSetting'

@@ -15,6 +15,10 @@ from modelcluster.models import ClusterableModel
 from wagtail.core.models import Orderable
 from django.utils.text import slugify
 from django_comments_xtd.models import XtdComment
+from allauth.account.forms import LoginForm
+from wagtailstreamforms.blocks import WagtailFormBlock
+from wagtailstreamforms.models.abstract import AbstractFormSetting
+
 
 
 
@@ -87,6 +91,11 @@ class ArticlePage(Page):
     def get_absolute_url(self):
         return self.get_url()
 
+    def serve(self, request, *args, **kwargs):
+        response = super().serve(request, 'cms/article_page.html')
+        response.context_data['login_form'] = LoginForm()
+        return response
+
 
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
@@ -149,6 +158,12 @@ class VideoBlogPage(ArticlePage):
 
     def get_absolute_url(self):
         return self.get_url()
+
+    def serve(self, request, *args, **kwargs):
+        response = super().serve(request, 'cms/article_page.html')
+        response.context_data['login_form'] = LoginForm()
+        return response
+
 
 class TextPage(Page):
     text = RichTextField(blank=True)
@@ -261,3 +276,18 @@ class CustomComment(XtdComment):
         self.page = ArticlePage.objects.get(pk=self.object_pk)
         super(CustomComment, self).save(*args, **kwargs)
 
+
+class ContactPage(Page):
+    intro = RichTextField(blank=True)
+    body = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('form', WagtailFormBlock()),
+    ])
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+
+class AdvancedFormSetting(AbstractFormSetting):
+    to_address = models.EmailField()
